@@ -1,23 +1,128 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Event from '../views/Event.vue'
+import Education from '../views/Education.vue'
+import AbandonedDog from '../views/AbandonedDog.vue'
+import page404 from '../views/404page.vue'
+import MemberPage from '../views/MemberPage.vue'
+import MemberEvent from '../components/memberPage/Event'
+import MemberAbandoned from '../components/memberPage/Abandoned'
+import MemberMedia from "../components/memberPage/Media";
+import Channel from '../components/media/Channel'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'home',
     component: Home
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+    path: '/home',
+    name: 'home',
+    component: Home
+  },
+  {
+    path: '/event',
+    name: 'event',
+    component: Event
+  },
+  // {
+  //   path: '/education/home',
+  //   name: 'education_home',
+  //   component: Education
+  // },
+  // {
+  //   path: '/education/explore',
+  //   name: 'education_explore',
+  //   component: Education
+  // },
+  // {
+  //   path: '/education/scripts',
+  //   name: 'education_scripts',
+  //   component: Education
+  // },
+  // {
+  //   path: '/education/m_channel',
+  //   name: 'education_m_channel',
+  //   component: Education
+  // },
+  // {
+  //   path: '/education/good_medias',
+  //   name: 'education_good_medias',
+  //   component: Education
+  // },
+  // {
+  //   path: '/education/search/:key',
+  //   name: 'education_search',
+  //   component: Education
+  // },
+  // {
+  //   path: '/education/channel/:key',
+  //   name: 'education_channel',
+  //   component: Education
+  // }, 
+  // {
+  //   path: '/education/sc_channel/:key',
+  //   name: 'education_sc_channel',
+  //   component: Education
+  // },
+
+
+
+
+  {
+    path: '/education/:tab/:keyword',
+    name: 'education',
+    component: Education
+  },
+  {
+    path: '/education/:tab',
+    name: 'education',
+    component: Education
+  },
+  {
+    path: '/abandonedDog',
+    name: 'abandonedDog',
+    component: AbandonedDog
+  },
+  {
+    path: '/education',
+    name: 'education',
+    component: Education
+  },
+  {
+    path: '/memberPage',
+    name: 'memberPage',
+    component: MemberPage
+  },
+  {
+    path: '/memberEvent',
+    name: 'memberEvent',
+    component: MemberEvent
+  },
+  {
+    path: '/memberAbandoned',
+    name: 'memberAbandoned',
+    component: MemberAbandoned
+  },
+  {
+    path: '/memberMedia',
+    name: 'memberMedia',
+    component: MemberMedia
+  },
+  {
+    path: '/channel/:email',
+    name: 'channel',
+    component: Channel
+  },
+  {
+    path: '*',
+    name : 'page404',
+    component : page404
+  },
 ]
 
 const router = new VueRouter({

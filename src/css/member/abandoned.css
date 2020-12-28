@@ -1,0 +1,17 @@
+.content{
+    width:96%;
+    margin:2%;
+    background-color: #F2F2F2;
+}
+.content img{
+    width:100%;
+    max-width:175px;
+    margin:0 auto;
+}
+.content_info{
+    text-align:left; color:black;
+    width:65%; min-width:300px; float:left;
+}
+.content_btn{
+    width:130px; float:left
+}

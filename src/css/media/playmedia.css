@@ -1,0 +1,77 @@
+.back_color{
+  background-color: #F5F5F5;
+}
+#next_area{
+  overflow: auto;
+}
+#next_area ._title{
+  font-size:16px;
+}
+#next_area .channel_name{
+  font-size:13px;
+}
+#next_area ._info{
+  font-size:13px;
+}
+.areas{
+  width:100%; 
+  max-width:1600px; 
+  margin:0 auto;
+}
+.info_area{
+  overflow-y: auto;
+}
+.media_dialog{
+  width:100%;
+  height: 100%;
+  position: absolute;
+  bottom: 0;
+  background-color: #F5F5F5;
+}
+.media_dialog .wep_toolbar{
+  height:30px; width:100%;
+  background-color: #2196F3;
+}
+.media_dialog .mb_toolbar{
+  height:30px; width:100%; 
+  position: absolute; top:0px; z-index:2;
+}
+#media_area{
+  height:auto;
+  float: left;
+}
+#media_area .wep_toolbar{
+  height:50px; width:100%;
+}
+#media_area .mb_toolbar{
+  height:30px; width:100%; position: absolute; top:0px; z-index:2;
+}
+#media_area .tag{
+  color:rgb(42, 42, 253);
+  font-size:12px;
+}
+#media_area .content{
+  font-size:18px;
+}
+#media_area .sb_content{
+  margin-bottom: 10px; 
+  font-size:16px
+}
+#media_area .count{
+  font-size:14px;
+}
+#media_area .date{
+  font-size:14px;
+}
+.script_count{
+  font-size:13px;
+}
+#next_area{
+  height:auto;
+  float: right;
+}
+.channel_info{
+  min-width:80px;
+  max-width:200px; 
+  float: left;
+}

@@ -1,0 +1,53 @@
+.cards {
+    cursor: pointer;
+    min-height:300px;
+}
+.card_base{
+    width:90%; margin:0 auto; padding-top:5%;
+}
+#member_page{
+    width:100%; max-width:1000px; margin:0 auto; padding-top:1%; overflow:auto;
+}
+#member_banner{
+    text-align: center;
+    padding:20px 0px;
+}
+#member_banner h3{
+    display: inline;
+}
+#member_info{
+    margin:5% 0;
+}
+#member_info p{
+    display: inline;
+}
+.position_center{
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.card_col{
+    height:150px;
+    position:relative;
+}
+/* .profile div{
+    margin:10px 0px;
+} */
+#event{
+    width:100%;
+    text-align: center;
+}
+.media_table{
+    text-align: center;
+}
+.media_table div{
+    margin-bottom: 15px;
+    float: left;
+}
+.media_table .name{
+    width:25%;
+}
+.media_table .con{
+    width:75%;
+}

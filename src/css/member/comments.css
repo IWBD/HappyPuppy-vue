@@ -1,0 +1,22 @@
+.main{
+    max-width:1200px; 
+    width:100%;
+    margin:0 auto; 
+    padding-top:10px;
+}
+.panel{
+    width:98%;
+    margin:0% 1%;
+}
+.comment{
+    font-size:15px;
+}
+.comments_area{ 
+    width:100%;
+}
+.in_comment_area{
+    width:96%; margin:0% 2%;
+}
+.good_bad{
+    font-size:13px;
+}

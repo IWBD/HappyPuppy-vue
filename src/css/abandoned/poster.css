@@ -1,0 +1,40 @@
+#poster{
+width:100%;
+background-color: white;
+}
+#main_img{
+width:100%; 
+height:31%; 
+background-color:#E3DFDE;
+position:relative;
+}
+#dog_name{
+width:100%;
+height:100%;
+z-index:10;
+position:relative;
+}
+#main_img_btn{
+position:absolute; z-index:1; top:50%; left:50%; transform:translate(-50%, -50%);
+}
+#title_area{
+width:100%; height:16%; 
+}
+#title_div{
+width:80%; height:100%; margin:0 auto;
+}
+#ad_info_area{
+height:14%;
+}
+#ad_info_div{
+width:100%;
+}
+#sb_img_area{
+width:100%; height:22%; position:relative;
+}
+#sb_img_div{
+width:27%; margin:3%; height:65%; position:relative; background-color:#E3DFDE;
+}
+.sb_img{
+position:absolute; z-index:1; top:50%; left:50%; transform:translate(-50%, -50%);
+}

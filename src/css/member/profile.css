@@ -1,0 +1,19 @@
+.profile_area{
+    max-width:700px; 
+    margin:0 auto; 
+    padding-top:20px;
+}
+.img_area{
+    position:relative; min-height:150px;
+}
+.a_center{
+    width:100%; text-align:center;
+}
+.nickname_area{
+    position:relative; min-height:130px;
+}
+.pass_area{
+    max-width:500px; 
+    margin:0 auto; 
+    padding-top:20px;
+}

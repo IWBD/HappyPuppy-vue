@@ -1,0 +1,14 @@
+.poster_tollbar{
+    width:100%; 
+    z-index:1; 
+    position:absolute; 
+    top:0px; 
+    left:0px; 
+    background-color:rgba(0,0,0,0.5);
+}
+.poster_title{
+    color:white; position:relative; z-index:1; font-size:1.2em;
+}
+.poster_div{
+    width:100%; max-width:600px;
+}

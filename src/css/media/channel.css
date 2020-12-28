@@ -1,0 +1,67 @@
+.content{
+    width:100%;
+    max-width: 1500px;
+    margin:0 auto;
+}
+#channel_content{
+    background-color:white;
+    margin:0;
+    width:100%;
+}
+.channer_header{
+    width:100%;
+    max-width:1000px;
+    margin:0 auto;
+}
+.home_info {
+    width:100%;
+    height:100px;
+}
+.home_info #img_area{
+    width:100px;
+    height:100px;
+    padding:10px;
+    float: left;
+}
+.home_info #info_area{
+    height:100px;
+    float: left;
+}
+.channel_tab{
+    width:100%;
+    max-width: 1500px;
+    margin:0 auto;
+}
+.tabs{
+    width:100%;
+    background-color:#F8F3F2
+}
+#scrip_btn{
+    margin-left:10px;
+}
+.media_box{
+    width:100%;
+}
+.media_info{
+    width:100%;
+    height:90px;
+    margin-top:10px;
+}
+.media_info p{
+    width:100%;
+    display: inline-block;
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: normal; 
+    line-height: 1.2; 
+    text-align: left; 
+    word-wrap: break-word; 
+    display: -webkit-box; 
+    -webkit-box-orient: vertical;
+}
+.view_area{
+    width:100%;
+    height:100%;
+    cursor:pointer
+}
