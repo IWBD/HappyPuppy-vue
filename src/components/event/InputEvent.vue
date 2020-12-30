@@ -287,13 +287,13 @@
           let url = '';
 
           if(!!this.update){
-            url = 'api/event/update'
+            url = '/api/event/update'
             form_data.append('update', JSON.stringify(this.update));
           }else{
-            url = 'api/event/sharp_img'
+            url = '/api/event/sharp_img'
           }
 
-          this.$http.post(url, form_data).then( res =>{
+          this.$http.post(url, form_data).then(res =>{
             if(res.data.code === 1){
               this.dialog = false;
               history.go(0);
@@ -314,9 +314,19 @@
       //이미지가 첨부 됐을때 비율을 계산하여 이미지 추출 박스를 보여줌
       //백앤드 서버에 추출할 포지션들이 들어가면 소수점이 있거나 이미지 크기를 초과하였을 경우
       //작동하지 않음으로 소수점이 발생하면 안됨
-      imgView(event){
+      imgView(event, bl){
         const {img_cutting, box} = this.$refs;
         if(event){
+          const type = event.type.indexOf('image/');
+          if(!bl && type === -1){
+              alert('이미지 파일만 업로드할 수 있습니다.');
+              return;
+          }
+          if(event.size > 10458760){
+            alert('행사 포스터 이미지 제한은 10MB입니다.');
+            this.ev_img = null;
+            return;
+          }
           const {setImgNaturalSize, cuttingBoxSizing} = this;
           this.img = URL.createObjectURL(event);
           this.sl_disabled = false;

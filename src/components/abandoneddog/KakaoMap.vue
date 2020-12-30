@@ -227,7 +227,6 @@ export default {
             this.map_infowindow.open(this.map, this.map_markers[this.rv_num]);
           }
         }
-        console.log(`height : ${height}`);
         this.map_container.style.height = height;
         this.map.relayout();
       }
@@ -240,7 +239,6 @@ export default {
     },
     //검색 결과 목록을 보여주는 함수
     showList(bl){
-      console.log('showList')
       if(!this.map_list){
         alert("검색된 결과가 없습니다.")
         this.showMap();
@@ -268,7 +266,6 @@ export default {
       this.map.relayout();
     },
     showMapList(){
-      console.log('showMapList');
       if(this.map_switch){
         this.showMap(this.layout_item);
       }else{
@@ -282,7 +279,6 @@ export default {
     },
     //map을 보여주는 함수
     showMap(bl){
-      console.log('showMap!!')
       this.$refs["keyword"].blur();
       this.map_switch = false;
       this.active_btn = 0;

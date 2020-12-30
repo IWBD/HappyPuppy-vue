@@ -110,7 +110,7 @@
             ></v-file-input>
               <v-file-input 
                 ref="input_video"
-                accept=".mkv, video/*"
+                accept="video/*"
                 @change="inputToVideo"
             ></v-file-input>
         </div>
@@ -246,6 +246,15 @@ export default {
     },
     inputToVideo(event){
       if(event){
+        const type = event.type.indexOf('video/');
+        if(type === -1){
+          alert('영상 파일만 업로드할 수 있습니다.');
+          return;
+        }
+        if(event.size > 1073741824){
+          alert('영상 최대 크기는 1GB입니다.');
+          return;
+        }
         this.to_video = URL.createObjectURL(event);
         this.video_file = event;
         this.video_btn = false;
@@ -253,6 +262,15 @@ export default {
     },
     inputToImage(event){
       if(event){
+        const type = event.type.indexOf('image/');
+        if(type === -1){
+          alert('이미지 파일만 업로드할 수 있습니다.');
+          return;
+        }
+        if(event.size > 10485760){
+          alert('이미지 최대 크기는 10MB입니다.');
+          return
+        }
         this.to_img = URL.createObjectURL(event);
         this.img_file = event;
         this.img_btn = false;

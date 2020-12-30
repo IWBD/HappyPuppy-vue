@@ -64,8 +64,9 @@
           <v-subheader v-if="login_number">구독 채널</v-subheader>
           <v-list-item v-for="(bar, i) in my_scripts" :key="i">
             <v-list-item-icon>
-              <v-avatar  size="30"> 
-                <img :src="'/api/img/get_img/member/' + bar.p_img">
+              <v-avatar  size="30" style="background-color:#A9E2F3"> 
+                <img v-if="bar.p_img" :src="`/api/img/get_img/member/${bar.p_img}`">
+                <v-icon v-else size="20">mdi-dog</v-icon>
               </v-avatar>
               <v-avatar ref='drop_ready' size="5" > 
               </v-avatar>

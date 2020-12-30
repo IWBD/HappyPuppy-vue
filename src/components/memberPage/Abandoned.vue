@@ -389,10 +389,10 @@ export default {
                     const i = Number(k.split('sb')[1]);
                     target.subImgClick(i, true);
                     target.sb_imgs[i] = fileData;
-                    target.subImgInput(fileData);
+                    target.subImgInput(fileData, true);
                 }else{
                     target.main_img = fileData;
-                    target.mainImgInput(fileData);
+                    target.mainImgInput(fileData, true);
                 }
                 if(++this.update_num >= 3){
                     this.update_num = 0;

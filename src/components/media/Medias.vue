@@ -3,12 +3,15 @@
     <v-col  cols="12" sm="6" md="4" lg="4" xl="3" :class="mb_cols"
         v-for="(bar, i) in medias" :key="i">
         <v-responsive :aspect-ratio="16/9" style="background-color:white">
-          <v-img :aspect-ratio="16/9" class="view_area" @click="openPlayMedia(bar, i)" :src="'/api/img/get_thumbnail/media/' + bar.img"></v-img>
+          <v-img :aspect-ratio="16/9" class="view_area" @click="openPlayMedia(bar, i)"
+           :src="`/api/img/get_thumbnail/media/${bar.img}`"></v-img>
         </v-responsive>
         <div class="media_info d-flex justify-start">
           <div style="width:40px; height:100%; margin-right:5px;">
             <v-list-item-avatar @click="showChannel(bar.email)" class="ma-0 cucur_pointer" style="margin:0 auto;" >
-              <v-img  :src="'/api/img/get_img/member/' + bar.p_img"></v-img>
+              <v-img :src="!bar.p_img ? '' : `/api/img/get_img/member/${bar.p_img}`" style="background-color:#A9E2F3">
+                <v-icon v-if="!bar.p_img" size="30">mdi-dog</v-icon>
+              </v-img>
             </v-list-item-avatar>
           </div>
           <div>

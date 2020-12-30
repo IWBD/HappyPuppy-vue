@@ -29,50 +29,6 @@ const routes = [
     name: 'event',
     component: Event
   },
-  // {
-  //   path: '/education/home',
-  //   name: 'education_home',
-  //   component: Education
-  // },
-  // {
-  //   path: '/education/explore',
-  //   name: 'education_explore',
-  //   component: Education
-  // },
-  // {
-  //   path: '/education/scripts',
-  //   name: 'education_scripts',
-  //   component: Education
-  // },
-  // {
-  //   path: '/education/m_channel',
-  //   name: 'education_m_channel',
-  //   component: Education
-  // },
-  // {
-  //   path: '/education/good_medias',
-  //   name: 'education_good_medias',
-  //   component: Education
-  // },
-  // {
-  //   path: '/education/search/:key',
-  //   name: 'education_search',
-  //   component: Education
-  // },
-  // {
-  //   path: '/education/channel/:key',
-  //   name: 'education_channel',
-  //   component: Education
-  // }, 
-  // {
-  //   path: '/education/sc_channel/:key',
-  //   name: 'education_sc_channel',
-  //   component: Education
-  // },
-
-
-
-
   {
     path: '/education/:tab/:keyword',
     name: 'education',

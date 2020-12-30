@@ -261,42 +261,42 @@
   import Poster from './Poster'
   export default {
     data: () => ({
-      ad_title:null, //제목
+      ad_title:null, 
       ad_name:null,
-      ad_honorarium:null, //사례금
-      ad_swich : false, //사례금 여부
-      ad_pone:null, //연락 번호
-      ad_detail:null, //상세내용
-      ad_date:new Date().toISOString().substr(0, 10),//실종 일자
+      ad_honorarium:null, 
+      ad_swich : false, 
+      ad_pone:null, 
+      ad_detail:null, 
+      ad_date:new Date().toISOString().substr(0, 10),
       ad_place : null,
       ad_place_rules : [
         v => !!v || "클릭하여 실종 장소를 입력해주세요."
       ],
       errorMessages:null, 
-      ad_title_rules:[ // 제목 체크사항
+      ad_title_rules:[ 
         v => v === null || v.length <= 0 ? '제목이 입력되지 않았습니다' 
         : v.length > 24 ? '24자 이내로 입력해주세요.'
         : v.replace(/\s/g, '').length !== 0 || "공백만 입력하셨습니다."
       ],
-      ad_name_rules:[ // 이름 체크사항
+      ad_name_rules:[ 
         v => v === null ? '이름이 입력되지 않았습니다' 
         : v.replace(/\s/g, '').length !== 0 || "공백만 입력하셨습니다."
       ],
-      ad_honorarium_rules:[ //사례금 체크사항
+      ad_honorarium_rules:[ 
         v => !!v || '사례금을 입력해 주세요.',
         v => Number.isInteger(v*1) || '숫자만 입력해주세요.'
       ],
-      ad_pone_rules:[ // 연락번호 체크사항
+      ad_pone_rules:[ 
         v => !v ? '연락가능한 번호를 입력하세요.' : v.length < 15 || '유효하지않은 번호 양식입니다.'
       ],
-      ad_detail_rules:[// 상세내용 체크사항
+      ad_detail_rules:[
         v => v === null ? '상세내용을 입력해주세요.' 
         : v.replace(/\s/g, '').length === 0 ? "공백만 입력하셨습니다." 
         : v.length < 125 || '124자 이내로 입력하세요'
       ],
-      e1:1, //스텝퍼의 위치
-      calender: false, //달력 on/off 변수
-      formHasErrors: false,//폼의 에러 발생 여부
+      e1:1,
+      calender: false, 
+      formHasErrors: false,
       poster_style : {},
       main_img_dialog : false,
       main_img:null,
@@ -320,12 +320,8 @@
       Poster,
     },
     methods: {
-      createPoster(){
-        this.$refs.poster.createPDF();
-      },
-      //스텝퍼의 각 단계마다 다음 버튼 클릭시 실행
-      // 1페이지 일때 폼 내부의 에러 사항 확인 후 없으면
-      // 다음 스텝퍼 이동, 있으면 에러메세지를 띄워줌
+      
+      // 입력 폼 체크후 다음 단계 이동
       step1(){
         this.form_err = false;
 
@@ -346,6 +342,7 @@
           this.e1 ++;
         }
       },
+      // 이미지 삽입 체크후 다음 단계 이동
       step2(){
         if(!this.main_img_url){
           this.openAlert('상단 메인이미지를 첨부해주세요.');
@@ -373,9 +370,11 @@
         }
         
       },
+      // 업로드 인지 업데이트인지 확인하고 서버에 insert or delete 요청
       step3(){
         this.createResult();
       },
+      // 전단지 이미지를 생성하고 생성된 이미지 file로 변환
       createPoster(){
         this.loading = true;
         this.$refs.main_img_btn.style.display = 'none';
@@ -406,6 +405,7 @@
           }
           return new File([u8arr], filename, {type:mime});
       },
+      //추출할 el 좌표 값 획득
       getElLocation(el) {
         let x = 0;
         let y = 0;
@@ -417,6 +417,7 @@
         }
         return {x : x, y : y + window.scrollY};
       },
+      // insert or update 서버 사이드에 요청
       createResult(data){
         const items = this.sb_imgs;
         let form = this.form;
@@ -430,7 +431,6 @@
         }else{
           url = 'api/abandoned/insert_poster';
         }
-        console.log(form)
         var imgs = new FormData();
         imgs.append('main', this.main_img);
         imgs.append('form', JSON.stringify(form));
@@ -443,23 +443,37 @@
             if(res.data.code === 2){
               alert('장시간 동작이 없어 세션이 만료되었습니다. 다시 로그인 해주세요.');
               this.$router.push('/');
+              return;
             }else if(!res.data.code){
               alert('이미지 저장 중에 문제가 발생했습니다.');
-              this.$router.go();
             }
+            this.$router.go();
           }).catch(err => {
             alert('이미지 저장 중에 문제가 발생했습니다.');
             this.$router.push('/');
         })
       },
+      //에러 사항 표시
       openAlert(ms){
         if(this.alert_key){
           this.alert_massage = ms ? ms : '이미지 첨부중에 문제가 발생했습니다.';
           this.alert = true;
         }
       },
-      mainImgInput(event){
+      //메인 이미지를 삽입하고 삽입된 이미지 base64문자열로 변환 요청
+      mainImgInput(event, bl){
         if(event){
+          const type = event.type.indexOf('image/');
+          if(!bl && type === -1){
+            alert('이미지 파일만 업로드할 수 있습니다.');
+            this.main_img = null;
+            return;
+          }
+          if(event.size > 10485760){
+            alert('이미지 최대 크기는 10MB입니다.');
+            this.main_img = null;
+            return
+          }
           var img = new FormData();
           img.append('img', event);
           this.$http.post('/api/img/return_buffer', img).then(res => {
@@ -480,9 +494,20 @@
           this.$refs.main_img_btn.style.display = 'block';
         }
       },
-      subImgInput(event){
+      //서브 이미지를 삽입하고 삽입된 이미지 base64문자열로 변환 요청
+      subImgInput(event, bl){
         const idx = this.select_idx;
         if(event){
+          const type = event.type.indexOf('image/');
+          if(!bl && type === -1){
+              alert('이미지 파일만 업로드할 수 있습니다.');
+              return;
+          }
+          if(event.size > 10485760){
+            alert('이미지 최대 크기는 10MB입니다.');
+            this.sb_imgs[idx] = null;
+            return
+          }
           var img = new FormData();
           img.append('img', event);
 
@@ -521,6 +546,7 @@
           this.$refs.main_img_btn.style.display = bl ? 'block' : 'none';
         }
       },
+      // 브라우저 크기 변환시 레이아웃 변경
       onRisize(){
         const bl = window.innerWidth < 960;
         this.layout_item = bl;
@@ -568,20 +594,25 @@
           this.ad_pone = format_pone;
         }
       },
+      // 카카오맵 오픈
       showMap(){
         this.$refs["kakaoMap"].openMap();
         this.onRisize();
       },
+      // 장소 선택시 조건에 따라 장소 문자열 생성
       inputPlace(data){
         let item = '';
-        console.log(data);
         item = data.name;
         item = data.address_name.length === 0 || item + ', ' + data.address_name;
         if(data.road_address_name.length > 0) {
           item += ', ' + data.road_address_name;
         };
         this.ad_place = item;
-      }
+      },
+      // // 전단지 이미지 생성
+      // createPoster(){
+      //   this.$refs.poster.createPDF();
+      // },
     },
     computed: {
       // 사례금 선택시 텍스트 변환

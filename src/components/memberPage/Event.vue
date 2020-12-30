@@ -96,7 +96,8 @@ export default {
             form.update = {num : item.num, key: item.ev_img};
             form.ev_dates = [this.getDate(item.ev_start_date), this.getDate(item.ev_end_date)];
 
-            let url = '/api/img/get_img/event/' + item.ev_img.split('sharp')[1];
+            const img_name = item.ev_img.split('sharp')[1];
+            let url = '/api/img/get_img/event/' + img_name;
 
             const toDataURL = url => fetch(url)
             .then(response => response.blob())
@@ -108,9 +109,9 @@ export default {
             }))
             toDataURL(url)
             .then(dataUrl => {
-                var fileData = this.dataURLtoFile(dataUrl, item.ev_img);
+                var fileData = this.dataURLtoFile(dataUrl, img_name);
                 form.ev_img = fileData;
-                form.imgView(fileData);
+                form.imgView(fileData, true);
             })
         },  
         //받은 dataUrl을 파일로 변환

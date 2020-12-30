@@ -104,7 +104,7 @@
                       <v-spacer></v-spacer>
                       <div style="height:100%;" class="d-flex justify-end">
                         <div class="d-flex align-center" style="height:100%">
-                          <v-btn v-if="iam" text color="blue" v-text="'관리'"></v-btn>
+                          <v-btn v-if="iam" text color="blue" v-text="'관리'" @click="$router.push('memberMedia')"></v-btn>
                           <v-btn v-else text color="blue" @click="scripting"
                           v-text="sc_whether ? '구독취소' : '구독'"></v-btn>
                         </div>

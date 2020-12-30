@@ -222,7 +222,6 @@ export default {
     },
     scripting(){
       const email = this.channel_email;
-      // console.log(this.my_script);
       const url = !this.my_script ? '/api/media/scripting/' + email : '/api/media/unscripting/' + email;
       this.$http.get(url).then(res => {
         if(res.data.code === 1){
@@ -232,7 +231,6 @@ export default {
           data.key = 'resetScripts';
           data.script = this.my_script;
           data.p_img = data.img;
-          console.log(data);
           this.$emit('child', data);
         }else{
           alert("로그인이 안되있거나, 세션이 만료되었습니다. 로그인 이후 가능한 서비스 입니다.");
@@ -264,7 +262,6 @@ export default {
       rs_arr.sort(function(a, b) {
           return a[key] > b[key] ? -1 : a[key] < b[key] ? 1 : 0;
       });
-      console.log(rs_arr);
       return rs_arr;
     },
     alignmentSelect(){

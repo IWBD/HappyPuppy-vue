@@ -101,7 +101,6 @@ export default {
             })
         },
         openUploadForm(update, media){
-            console.log(media);
             this.update = update;
             const add = this.$refs.add;
             if(update){

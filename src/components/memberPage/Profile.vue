@@ -141,44 +141,58 @@ export default {
     },
     //이미지 업로드
     inputImg(event){
-        const img = this.member_info.img;
-        var form = new FormData();
-        form.append('img', event);
-        form.append('n', !img ? 0 : 1);
-        form.append('delete_key', img);
-
-        this.$http.post('/api/member/profile', form).then(res => {
-            if(res.data.code === 1){
-                this.changeParent(res.data.item, true);
-            }else if(res.data.code === 2){
-                alert('장시간 동작이 없어 세션이 만료되었습니다. 다시 로그인 해주세요.');
-                this.$router.push('/');
-            }else{  
-                alert('프로필 이미지 변경에 문제가 발생했습니다.');
+        if(event){
+            const type = event.type.indexOf('image/');
+            if(type === -1){
+                alert('이미지 파일만 업로드할 수 있습니다.');
+                return;
             }
-        }).catch(err => {
-            console.log(err);
-            alert('프로필 이미지 변경에 문제가 발생했습니다.');
-        })
+            if(event.size > 10485760){
+                alert('이미지 최대 크기는 10MB입니다.');
+                return
+            }
+            const img = this.member_info.img;
+            var form = new FormData();
+            form.append('img', event);
+            form.append('n', !img ? 0 : 1);
+            form.append('delete_key', img);
+
+            this.$http.post('/api/member/profile', form).then(res => {
+                if(res.data.code === 1){
+                    this.changeParent(res.data.item, true);
+                }else if(res.data.code === 2){
+                    alert('장시간 동작이 없어 세션이 만료되었습니다. 다시 로그인 해주세요.');
+                    this.$router.push('/');
+                }else{  
+                    alert('프로필 이미지 변경에 문제가 발생했습니다.');
+                }
+            }).catch(err => {
+                console.log(err);
+                alert('프로필 이미지 변경에 문제가 발생했습니다.');
+            })
+        }
     },
     //닉네임 변경
     updateNickname(){
         let nickname = this.nickname
-        
-        if(!this.$refs.nickname.hasError){
-            this.$http.get('/api/member/nickname/' + nickname).then(res =>{
-                if(res.data.code === 1){
-                    this.changeParent(nickname, false);
-                }else if(res.data.code === 2){
-                    alert('장시간 동작이 없어 세션이 만료되었습니다. 다시 로그인 해주세요.');
-                    this.$router.push('/');
-                }else{
+        if(this.member_info.nickname !== nickname){
+            if(!this.$refs.nickname.hasError){
+                this.$http.get('/api/member/nickname/' + nickname).then(res =>{
+                    if(res.data.code === 1){
+                        this.changeParent(nickname, false);
+                    }else if(res.data.code === 2){
+                        alert('장시간 동작이 없어 세션이 만료되었습니다. 다시 로그인 해주세요.');
+                        this.$router.push('/');
+                    }else if(res.data.code === 3){
+                        alert('이미 사용중인 닉네임입니다.')
+                    }else{
+                        alert('닉네임 변경에 실패하였습니다.')
+                    }
+                }).catch(err => {
+                    console.log(err);
                     alert('닉네임 변경에 실패하였습니다.')
-                }
-            }).catch(err => {
-                console.log(err);
-                alert('닉네임 변경에 실패하였습니다.')
-            })
+                })
+            }
         }
     },
     //변경 내용을 부모 컴포넌트 방영
