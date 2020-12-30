@@ -3,7 +3,7 @@
 <li>Vue js와 Node js 기반으로 견주들을 위한 반응형 웹 어플리케이션을 만들어 보았습니다.</li><br>
 
 <h2>간략한 설명</h2>
-<li>해당 프로젝트는 Vue Cli를 이용하여 생성한 웹팩을 express에 run build한 프로젝트로 해당 레포지토리는 Vue js 소스코드 입니다.</li>
+<li>해당 프로젝트는 Vue Cli를 이용하여 생성한 웹팩을 express에 run build한 프로젝트로 해당 레포지토리는 프론트 소스코드 입니다.</li>
 <li>모바일에서도 서비스 가능하게끔 반응형 웹 디자인에 신경섰습니다.</li>
 <li>express(node js)와 프로젝트의 상세정보는 <a href="https://github.com/SangkyuGoodboyYesDoitsgoi/HappyPuppy">여기</a>를 클릭하세요.</li>
 <br>
