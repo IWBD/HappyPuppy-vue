@@ -16,7 +16,7 @@
 <li>UI component : Vuetify js 2.2.11</li>
 <li>api: 카카오 맵</li>
 <li>자세한 모듈 정보와 버전은 package.json를 참고하세요.</li>
-<li>서버사이드에 관한 모듈 정보는 <a href="https://github.com/SangkyuGoodboyYesDoitsgoi/HappyPuppy/package.json">여기</a>를 참고하세요.</li>
+<li>서버사이드에 관한 모듈 정보는 <a href="https://github.com/SangkyuGoodboyYesDoitsgoi/HappyPuppy/blob/master/package.json">여기</a>를 참고하세요.</li>
 
 <h2>실행 전</h2>
 <li>해당 레포지토리는 HappyPuppy 프로젝트의 Vue js 코드를 분리하는 것으로 서버사이드 코드가 필요합니다.</li>
