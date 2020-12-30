@@ -14,7 +14,7 @@
 <li>jquery 3.5.1</li>
 <li>vue-masonry 0.12.0</li>
 <li>UI component : Vuetify js 2.2.11</li>
-<li>jspdf 1.5.3<li>
+<li>jspdf 1.5.3</li>
 <li>api: 카카오 맵</li>
 <li>자세한 모듈 정보와 버전은 package.json를 참고하세요.</li>
 <li>서버사이드에 관한 모듈 정보는 <a href="https://github.com/SangkyuGoodboyYesDoitsgoi/HappyPuppy/blob/master/package.json">여기</a>를 참고하세요.</li>
