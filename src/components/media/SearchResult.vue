@@ -13,7 +13,7 @@
                         v-for="(bar, i) in channels" :key="i">
                         <v-layout wrap style="max-width:1000px;" v-resize="channelResize">
                             <v-col cols="4" sm="2" ref="channel_area" class='d-flex justify-center'>
-                                <v-avatar :size="img_size"> 
+                                <v-avatar :size="img_size" @click="showChannel(bar.email)" class="cucur_pointer"> 
                                     <v-img :src="!bar.img ? '' : '/api/img/get_img/member/' + bar.img" class="profile_color">
                                         <v-icon v-if="!bar.img" :size="icon_size">mdi-dog</v-icon>
                                     </v-img>
@@ -52,6 +52,8 @@
 
 <script>
 import Medias from "./Medias";
+import {mapMutations} from 'vuex';
+const name = 'media'
 export default {
     props:['medias', 'channels', 'mb_cols', 'rs_none'],
     components:{Medias},
@@ -65,9 +67,13 @@ export default {
         // rs_none:false,
     }),
     methods: {
+        ...mapMutations(name, ['MU_OPEN_EMAIL', 'MU_NV']),
+        showChannel(email){
+            this.MU_OPEN_EMAIL(email);
+            this.MU_NV(6);
+        },
         changeScripts(data, script){
             const {my_scripts} = this;
-            console.log(data);
             let idx = null;
             for(let i = 0; i < my_scripts.length; i++){
                 if(my_scripts[i].email === data.email){
