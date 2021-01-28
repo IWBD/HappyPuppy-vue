@@ -46,7 +46,8 @@
                   <v-layout wrap>
                     <v-col cols="12" sm="6" md="4" lg="4" xl="3" :class="mb_cols">
                       <v-responsive :aspect-ratio="16/9" class="media_box"  style="background-color:white">
-                        <v-img :aspect-ratio="16/9" class="view_area" @click="openPlayMedia(first_media, 0)" :src="!first_media.img ? '':'/api/img/get_thumbnail/media/'+first_media.img"></v-img>
+                        <v-img :aspect-ratio="16/9" class="view_area" @click="openPlayMedia(first_media, 0)" 
+                          :src="!first_media.img ? '':'/api/img/get_thumbnail/media/'+first_media.img"></v-img>
                       </v-responsive>
                     </v-col>
                     <v-col cols="12" sm="6">
@@ -114,7 +115,7 @@
                   <v-col cols="12" sm="6" md="4" lg="4" xl="3" v-for="(bar, i) in medias" :key="i" :class="mb_cols">
                     <v-responsive :aspect-ratio="16/9" class="media_box"  style="background-color:white">
                         <v-img :aspect-ratio="16/9" class="view_area" @click="openPlayMedia(bar, i)" 
-                        :src="!bar.img ? '':'/api/img/get_thumbnail/media/'+bar.img"></v-img>
+                        :src="!bar.img ? '':'/api/img/get_thumbnail/media/' + bar.img"></v-img>
                     </v-responsive>
                     <div class="media_info">
                       <v-layout>
@@ -311,17 +312,18 @@ export default {
     getChannelInfo(email){
       this.channel_email = email;
       this.$http.get('/api/media/get_channel/' + email).then(res => {
-          if(!res.data.code || res.data.code === 2){
-            alert('존재하지 않는 채널이거나, 채널 정보를 가져올 수 없습니다.');
-            this.$router.push('/education');
-          }else{
-            this.firstResize();
-            this.setHomeInfo(res.data.result, res.data.iam); 
-            this.email = email;
-          }
-      }).catch(err => {
-          alert('채널 정보를 가져오는데 문제가 발생했습니다.');
+        if(!res.data.code || res.data.code === 2){
+          alert('존재하지 않는 채널이거나, 채널 정보를 가져올 수 없습니다.');
           this.$router.push('/education');
+        }else{
+          this.firstResize();
+          this.setHomeInfo(res.data.result, res.data.iam); 
+          this.email = email;
+        }
+      }).catch(err => {
+        console.error(err);
+        alert('채널 정보를 가져오는데 문제가 발생했습니다.');
+        this.$router.push('/education');
       })
     },
     getScript(data){

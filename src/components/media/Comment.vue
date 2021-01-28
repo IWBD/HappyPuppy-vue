@@ -203,23 +203,24 @@ export default {
         }
     },
     getDate(item){
-      const now_date = new Date();
-      const date = new Date(item);
-      const rs_item = {
-        year : now_date.getFullYear() - date.getFullYear(),
-        month : now_date.getMonth() - date.getMonth(),
-        date : now_date.getDate() - date.getDate(),
+      const now_date = new Date(),
+      date = new Date(item),
+      rs = now_date - date,
+      day = Math.floor(rs/86400000),
+      month = Math.floor(rs/2592000000),
+      year = Math.floor(rs/31104000000);
+      
+      if(year > 0){
+        return year + '년 전';
       }
-      if(rs_item.year > 0){
-        return rs_item.year + '년 전';
+      if(month > 0){
+        return month + '개월 전';
       }
-      if(rs_item.month > 0){
-        return rs_item.month + '개월 전';
+      if(date > 0){
+        return day + '일 전';
       }
-      if(rs_item.date > 0){
-        return rs_item.date + '일 전';
-      }
-      var time = (now_date.getTime() - date.getTime()) / 60000; //분
+
+      let time = (now_date.getTime() - date.getTime()) / 60000; 
       if(time/60 >= 1){
         return Math.floor(time/60) + '시간 전';
       }

@@ -128,10 +128,9 @@ export default {
     //지역 검색
     searchPlace(){
       const place = this.place;
-      console.log(place);
       if(!place || place === '전국' ){
-        this.getAllPoster()
-        return
+        this.getAllPoster();
+        return;
       }
       this.$http.get('/api/abandoned/place_search/' + place).then((res) => {
         this.changeContent(res.data);

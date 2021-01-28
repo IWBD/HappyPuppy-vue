@@ -266,7 +266,7 @@ export default {
     ...mapMutations(name, ['MU_NV', 'MU_KEYWORD', 'MU_OPEN_EMAIL']),
     search(){
       if(!!this.keyword && !!this.keyword.replace(/\s/g, '').length){
-        this.$http.get('/api/media/search_keyword/' + this.keyword).then(res => {
+        this.$http.get(`/api/media/search_keyword/${this.keyword}`).then(res => {
           if(!res.data.code){
             alert('검색에 실패하였습니다.');
             if(!this.first_nv){
@@ -287,9 +287,16 @@ export default {
           alert('검색 과정에서 문제가 발생했습니다.');
           console.log(err);
         })
+      }else{
+        this.rs_none = true;
+        this.searched_result = [];
       }
     },
     keywordPush(){
+      if(!this.keyword){
+        return;
+      }
+
       if(this.nv === 5){
         const params = `/education/search/${this.keyword}`;
         this.$router.push(params).catch(err => {});

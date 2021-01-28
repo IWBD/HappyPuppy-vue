@@ -91,14 +91,14 @@ export default {
     getTodayEvent(){
       const today = new Date(), 
       start = `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`;
-      let num = 0;
       this.$http.get(`api/event/get_asc/${start}`).then(res => {
-        if(res.data.message){
+        if(res.data.code){
           this.events = !res.data.items.length ? null : res.data.items;
         }else{
           this.events = null;
         }
       }).catch(err => {
+        console.error(err);
         alert('행사 정보를 가져오는 과정에서 문제가 발생했습니다.')
       })
     },

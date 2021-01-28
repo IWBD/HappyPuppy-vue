@@ -29,10 +29,9 @@ export default {
     methods:{
         createPDF(){
             this.loader_dialog = true;
-            setTimeout(()=>{
+            setTimeout(async ()=>{
                 const is_mobile = this.mobileCheck(window.navigator.userAgent);
                 this.loader_dialog = false;
-                let bl = true;
                 
                 if(is_mobile){
                     window.open(`/api/img/get_img/abandoned/${this.poster_name}`);
@@ -44,9 +43,10 @@ export default {
                     'unit': 'mm',
                     'format': 'a4'
                 });
-
+                
                 doc.addImage(this.poster, 'jpg', 0, 0, 210, 210 * 1.414);
                 doc.save('실종 반려견.pdf');
+                
                 this.$emit("child",1);
             },200)
         },

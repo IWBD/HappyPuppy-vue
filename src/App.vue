@@ -173,7 +173,7 @@ export default {
         };
         this.change(info);
       }).catch(err => {
-          alert(arr);
+          alert(err);
       });
     }
   },

@@ -279,7 +279,8 @@
         : v.replace(/\s/g, '').length !== 0 || "공백만 입력하셨습니다."
       ],
       ad_name_rules:[ 
-        v => v === null ? '이름이 입력되지 않았습니다' 
+        v => v === null || v.length <= 0 ? '이름이 입력되지 않았습니다' 
+        : v.length > 10 ? '10자 이내로 입력해주세요.'
         : v.replace(/\s/g, '').length !== 0 || "공백만 입력하셨습니다."
       ],
       ad_honorarium_rules:[ 
@@ -287,7 +288,7 @@
         v => Number.isInteger(v*1) || '숫자만 입력해주세요.'
       ],
       ad_pone_rules:[ 
-        v => !v ? '연락가능한 번호를 입력하세요.' : v.length < 15 || '유효하지않은 번호 양식입니다.'
+        v => !v ? '연락가능한 번호를 입력하세요.' : v.length < 15 || '유효하지 않은 번호 양식입니다.'
       ],
       ad_detail_rules:[
         v => v === null ? '상세내용을 입력해주세요.' 
@@ -643,7 +644,7 @@
         if(hook){
           this.alert = false;
         }else{
-          this.openAlert('상단 메인이미지를 첨부해주세요.');
+          this.openAlert('상단 메인 이미지를 첨부해주세요.');
         }
       },
       sb_img : function(hook){

@@ -86,7 +86,7 @@ export default {
                 if(res.data.code === 1){
                     alert('영상 삭제가 완료되었습니다.');
                     this.$emit('child');
-                }else if(!!res.data.code){
+                }else if(res.data.code === 2){
                     alert('장시간 동작이 없어 세션이 만료됐습니다. 로그인 해주세요.');
                     this.$router.push('/');
                     return;

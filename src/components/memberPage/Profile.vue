@@ -79,6 +79,7 @@
                 <v-tab-item>
                     <div v-if="login_info.number === 1" class="pass_area">
                         <PWC
+                        :isLogin="member_info.email"
                         @child="tab = 0"/>
                     </div>
                     <div v-else style="width:100%; padding-top:20px; text-align:center;">

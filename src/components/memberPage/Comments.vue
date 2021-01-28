@@ -148,7 +148,6 @@ export default {
     }),
     methods:{
         deleteReq(){
-            console.log(this.delete_comments)
             if(this.delete_comments.length > 0){
                 if(confirm(`총 ${this.delete_comments.length}개의 댓글을 삭제 하시겠습니까?`) == true){
                     this.load_dialog = true;
@@ -159,7 +158,7 @@ export default {
                             this.$emit('child');
                             return;
                         }else if(res.data.code === 2){
-                            alert('장시간 동작이 없어 로그아웃되었습니다. 다시 로그인 해주세요.');
+                            alert('장시간 동작이 없어 로그아웃 되었습니다. 다시 로그인 해주세요.');
                         }else{
                             alert('삭제 과정에서 문제가 발생했습니다.')
                         }
@@ -227,29 +226,31 @@ export default {
             this.delete_comments = [];
         },
         getDate(item){
-            const now_date = new Date();
-            const date = new Date(item);
-            const rs_item = {
-                year : now_date.getFullYear() - date.getFullYear(),
-                month : now_date.getMonth() - date.getMonth(),
-                date : now_date.getDate() - date.getDate(),
+            const now_date = new Date(),
+            date = new Date(item),
+            rs = now_date - date,
+            day = Math.floor(rs/86400000),
+            month = Math.floor(rs/2592000000),
+            year = Math.floor(rs/31104000000);
+            
+            if(year > 0){
+                return year + '년 전';
             }
-            if(rs_item.year > 0){
-                return rs_item.year + '년 전';
+            if(month > 0){
+                return month + '개월 전';
             }
-            if(rs_item.month > 0){
-                return rs_item.month + '개월 전';
+            if(date > 0){
+                return day + '일 전';
             }
-            if(rs_item.date > 0){
-                return rs_item.date + '일 전';
-            }
-            var time = (now_date.getTime() - date.getTime()) / 60000; //분
+
+            let time = (now_date.getTime() - date.getTime()) / 60000; 
             if(time/60 >= 1){
                 return Math.floor(time/60) + '시간 전';
             }
             if(time >= 1){
                 return Math.floor(time) + '분 전';
             }
+            
             return '방금 전';
         },
     },

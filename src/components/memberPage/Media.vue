@@ -67,6 +67,7 @@ export default {
                 }
                 this.$router.push('/');
             }).catch(err => {
+                console.error(err);
                 alert('미디어 정보를 가져오는 중 문제가 발생했습니다.');
                 this.$router.push('/');
             })

@@ -114,10 +114,10 @@ import PWC from "./PWC";
       },
       //폼 데이터 리셋
       dataReset(){  
-        this.errorMessages = [] 
-        this.formHasErrors = false 
+        this.errorMessages = [];
+        this.formHasErrors = false;
         Object.keys(this.form).forEach(f => {
-          this.$refs[f].reset()
+          this.$refs[f].reset();
         })
         this.ex_message = '';
       },
@@ -139,7 +139,6 @@ import PWC from "./PWC";
         if(!this.formHasErrors){
           this.$http.post("/api/login", {'email' : this.user_email, 'password' : this.user_pw,}).then(
             (res) => {
-              const rs = res.data.message
               if(!!res.data.message){
                 this.$emit("child", {
                   number: 1,
@@ -147,7 +146,6 @@ import PWC from "./PWC";
                   r_title: "MYPAGE"
                 });
                 this.formClose();
-                // this.$router.go();
               }else{
                 this.ex_message = "가입하지 않은 아이디이거나, 잘못된 비밀번호입니다."
               }

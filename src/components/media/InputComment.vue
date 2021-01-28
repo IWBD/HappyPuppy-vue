@@ -23,7 +23,7 @@
             ></v-textarea>
             <div id="btns" ref="btns">
                 <div class="d-flex justify-end" >
-                    <v-btn tile v-if="in_comment" elevation="0" @click="parentsClose()">취소di</v-btn>
+                    <v-btn tile v-if="in_comment" elevation="0" @click="parentsClose()">취소</v-btn>
                     <v-btn tile v-else elevation="0" @click="openBtn(false)">취소</v-btn>
                     <v-btn tile elevation="0" color="blue" @click="inputComment(comment)" dark>댓글</v-btn>
                 </div>

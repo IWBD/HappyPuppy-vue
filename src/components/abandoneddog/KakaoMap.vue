@@ -414,7 +414,7 @@ export default {
         this.showList(this.layout_item);
         this.displayPlaces(data);
       }else if (status === kakao.maps.services.Status.ZERO_RESULT) {
-        alert("검색결과가 존재하지 않습니다.")
+        alert("검색 결과가 존재하지 않습니다.")
         // this.map_list = null;
         return;
 

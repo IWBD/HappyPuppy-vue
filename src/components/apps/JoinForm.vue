@@ -42,7 +42,8 @@
                   ></v-text-field>
               </v-col>
               <v-col cols="12" sm="4" xs="12">
-                    <v-btn block height="50px" class="font-weight-bold"  @click="sendCertifyNumber">인증번호 보내기</v-btn>
+                    <v-btn block height="50px" class="font-weight-bold"  
+                    :loading="loading" @click="sendCertifyNumber">인증번호 보내기</v-btn>
               </v-col>
               <v-col cols="12">
                 <v-text-field
@@ -122,6 +123,7 @@
         errorMessages: '',
         formHasErrors: false, 
         email_disabled: false, 
+        loading: false,
       }
     },
     props: ['login_info'],
@@ -142,11 +144,11 @@
       duplicateEmail(){
         const {member_email} = this.$refs;
         const num = member_email.errorBucket.length;
-
         if(!num){
-          this.$http.get("/api/join/duplicate_email/" + this.member_email).then(res => {
+          this.$http.get(`/api/join/duplicate_email/${this.member_email}`).then(res => {
             if(!!res.data.code && res.data.result > 0){
-              member_email.errorBucket.push("이미 사용중인 이메일 입니다.")
+              member_email.errorBucket.push("이미 사용 중인 이메일입니다.");
+              member_email.hasError;
             }
           }).catch(err => {
             console.log(err);
@@ -185,7 +187,7 @@
         Object.keys(this.form).forEach(f => {
           if (!this.form[f] || this.$refs[f].hasError) {
             this.formHasErrors = true;
-            this.$refs[f].validate(true); //해당 필드에 에러메세지 도출
+            this.$refs[f].validate(true); //해당 필드에 에러메세지 sh출
           }
         })
         
@@ -198,11 +200,9 @@
           }
 
           this.$http.post("/api/join/input_member", item).then(res => {
-            if(!!res.data.code){
-              if(res.data.result){
-                alert('인증번호가 일치하지 않거나, 요청 시간이 초과되었습니다.')
-                return;
-              }
+            if(!res.data.code){
+              alert('인증번호가 일치하지 않거나, 요청 시간이 초과되었습니다.')
+            }else{
               this.member_password = [];
               this.member_password_check = [];
               alert("회원가입이 완료되었습니다.");
@@ -220,13 +220,16 @@
         let email_field = this.$refs["member_email"]
         if(!email_field.hasError){ 
           this.email_disabled = true;
+          this.loading = true;
           const item = {email : this.member_email};
           this.$http.post ('/api/join/certify-number', item).then(res => {
             if(!res.data.code || !res.data.result){
               this.email_disabled = false;
+              alert('인증번호 발송이 실패하였습니다.');
             }else{
-              alert('인증번호가 전송되었습니다.')
+              alert('인증번호가 전송되었습니다.');
             }
+            this.loading = false;
           }).catch(err => {
             alert('인증번호 요청 과정에 문제가 발생했습니다.');
             this.email_disabled = false;
