@@ -28,7 +28,7 @@
       devServer: { 
         proxy: { 
           '/api': { 
-            target: 'http://localhost:<your sever local port>/api',
+            target: 'http://localhost:<your server local port>/api',
             changeOrigin: true, 
             pathRewrite: { 
               '^/api': ''
@@ -36,7 +36,7 @@
           } 
         } 
       },
-      outputDir: '<your sever directory path>/public',
+      outputDir: '<your server path>/public',
     }
       
 
